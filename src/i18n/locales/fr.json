@@ -1,0 +1,54 @@
+{
+  "app": { "name": "Kiyovu Sports", "portal": "Portail du Règlement Intérieur" },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "membership": "Adhésion & Membres Honoraires",
+    "hr": "RH & Recrutement",
+    "elections": "Élections",
+    "disciplinary": "Discipline & Affaires Juridiques",
+    "financial": "Finances, Achats & Actifs",
+    "fanClubs": "Clubs de Supporters",
+    "players": "Joueurs & Protection",
+    "operations": "Opérations, Sécurité & Commissions",
+    "auditLog": "Journal d'audit",
+    "userManagement": "Gestion des utilisateurs",
+    "myProfile": "Mon profil"
+  },
+  "auth": {
+    "login": "Connexion",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "rememberMe": "Se souvenir de moi",
+    "loginButton": "Se connecter",
+    "loginError": "Ces identifiants ne correspondent à aucun compte.",
+    "logout": "Déconnexion"
+  },
+  "table": {
+    "search": "Rechercher...",
+    "addNew": "Ajouter",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "export": "Exporter vers Excel",
+    "printReport": "Imprimer le rapport",
+    "noResults": "Aucun enregistrement trouvé.",
+    "confirmDelete": "Voulez-vous vraiment supprimer cet enregistrement ?",
+    "rowsPerPage": "Lignes par page"
+  },
+  "report": {
+    "period": "Période du rapport",
+    "daily": "Journalier",
+    "weekly": "Hebdomadaire",
+    "monthly": "Mensuel",
+    "quarterly": "Trimestriel",
+    "annual": "Annuel",
+    "custom": "Période personnalisée",
+    "generate": "Générer le rapport"
+  },
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "loading": "Chargement...",
+    "status": "Statut",
+    "actions": "Actions"
+  }
+}

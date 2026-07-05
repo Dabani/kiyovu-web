@@ -1,0 +1,54 @@
+{
+  "app": { "name": "Kiyovu Sports", "portal": "Urubuga rw'Amategeko Ngengamikorere" },
+  "nav": {
+    "dashboard": "Ikibaho",
+    "membership": "Ubunyamuryango n'Icyubahiro",
+    "hr": "Abakozi n'Ishakisha",
+    "elections": "Amatora",
+    "disciplinary": "Disipulini n'Amategeko",
+    "financial": "Imari, Ibigo & Umutungo",
+    "fanClubs": "Amashyirahamwe y'Abaharanira",
+    "players": "Abakinnyi & Kurengera",
+    "operations": "Imikorere, Umutekano & Komisiyo",
+    "auditLog": "Raporo y'Igenzura",
+    "userManagement": "Gucunga Abakoresha",
+    "myProfile": "Umwirondoro wanjye"
+  },
+  "auth": {
+    "login": "Kwinjira",
+    "email": "Aderesi imeyili",
+    "password": "Ijambo ry'ibanga",
+    "rememberMe": "Unyibuke",
+    "loginButton": "Injira",
+    "loginError": "Aya makuru ntayahuye n'ayabitswe.",
+    "logout": "Gusohoka"
+  },
+  "table": {
+    "search": "Shakisha...",
+    "addNew": "Ongeraho",
+    "edit": "Hindura",
+    "delete": "Siba",
+    "export": "Kohereza muri Excel",
+    "printReport": "Chapisha raporo",
+    "noResults": "Nta bisubizo byabonetse.",
+    "confirmDelete": "Wemeza gusiba iyi nyandiko?",
+    "rowsPerPage": "Imirongo ku rupapuro"
+  },
+  "report": {
+    "period": "Igihe cy'iraporo",
+    "daily": "Buri munsi",
+    "weekly": "Buri cyumweru",
+    "monthly": "Buri kwezi",
+    "quarterly": "Buri gihembwe",
+    "annual": "Buri mwaka",
+    "custom": "Igihe wihitiyemo",
+    "generate": "Kora raporo"
+  },
+  "common": {
+    "save": "Bika",
+    "cancel": "Hagarika",
+    "loading": "Birimo gupakira...",
+    "status": "Imiterere",
+    "actions": "Ibikorwa"
+  }
+}
