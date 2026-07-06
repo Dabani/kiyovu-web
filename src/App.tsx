@@ -9,6 +9,7 @@ import { MembershipModule } from './modules/membership/MembershipModule';
 import { HrModule } from './modules/hr/HrModule';
 import { ElectionsModule } from './modules/elections/ElectionsModule';
 import { DisciplinaryLegalModule } from './modules/disciplinary/DisciplinaryLegalModule';
+import { FinancialModule } from './modules/financial/FinancialModule';
 
 export default function App() {
   const fetchMe = useAuthStore((s) => s.fetchMe);
@@ -28,9 +29,10 @@ export default function App() {
           <Route path="/hr/*" element={<HrModule />} />
           <Route path="/elections/*" element={<ElectionsModule />} />
           <Route path="/disciplinary-legal/*" element={<DisciplinaryLegalModule />} />
+          <Route path="/financial/*" element={<FinancialModule />} />
 
           {/* Further module bundle routes appended here, one block per delivery:
-              <Route path="/financial/*" element={<FinancialModule />} />
+              <Route path="/fan-clubs/*" element={<FanClubsModule />} />
               ... */}
         </Route>
       </Route>
