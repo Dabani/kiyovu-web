@@ -7,6 +7,7 @@ import { ProtectedRoute } from './routes/ProtectedRoute';
 import { useAuthStore } from './stores/authStore';
 import { MembershipModule } from './modules/membership/MembershipModule';
 import { HrModule } from './modules/hr/HrModule';
+import { ElectionsModule } from './modules/elections/ElectionsModule';
 
 export default function App() {
   const fetchMe = useAuthStore((s) => s.fetchMe);
@@ -24,9 +25,10 @@ export default function App() {
           <Route path="/" element={<DashboardPage />} />
           <Route path="/membership/*" element={<MembershipModule />} />
           <Route path="/hr/*" element={<HrModule />} />
+          <Route path="/elections/*" element={<ElectionsModule />} />
 
           {/* Further module bundle routes appended here, one block per delivery:
-              <Route path="/elections/*" element={<ElectionsModule />} />
+              <Route path="/disciplinary-legal/*" element={<DisciplinaryLegalModule />} />
               ... */}
         </Route>
       </Route>
