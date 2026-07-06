@@ -34,3 +34,9 @@ export function toSelectData(options: LookupOption[] | undefined, locale: string
   const field = `label_${locale}` as keyof LookupOption;
   return options.map((o) => ({ value: String(o.id), label: (o[field] as string) ?? o.label_en }));
 }
+
+/** One-call convenience: fetches a lookup and returns it pre-shaped for a Mantine <Select>. */
+export function useLookupSelect(key: string, locale: string, appliesTo?: string) {
+  const query = useLookup(key, appliesTo);
+  return { data: toSelectData(query.data, locale), isLoading: query.isLoading, raw: query.data };
+}

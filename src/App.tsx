@@ -5,6 +5,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import { AppLayout } from './components/layout/AppLayout';
 import { ProtectedRoute } from './routes/ProtectedRoute';
 import { useAuthStore } from './stores/authStore';
+import { MembershipModule } from './modules/membership/MembershipModule';
 
 export default function App() {
   const fetchMe = useAuthStore((s) => s.fetchMe);
@@ -20,9 +21,9 @@ export default function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
           <Route path="/" element={<DashboardPage />} />
+          <Route path="/membership/*" element={<MembershipModule />} />
 
-          {/* Module bundle routes appended here, one block per delivery:
-              <Route path="/membership/*" element={<MembershipModule />} />
+          {/* Further module bundle routes appended here, one block per delivery:
               <Route path="/hr/*" element={<HrModule />} />
               ... */}
         </Route>
