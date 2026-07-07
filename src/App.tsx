@@ -12,6 +12,7 @@ import { DisciplinaryLegalModule } from './modules/disciplinary/DisciplinaryLega
 import { FinancialModule } from './modules/financial/FinancialModule';
 import { FanClubsModule } from './modules/fanclubs/FanClubsModule';
 import { PlayersSafeguardingModule } from './modules/players/PlayersSafeguardingModule';
+import { OperationsModule } from './modules/operations/OperationsModule';
 
 export default function App() {
   const fetchMe = useAuthStore((s) => s.fetchMe);
@@ -34,10 +35,9 @@ export default function App() {
           <Route path="/financial/*" element={<FinancialModule />} />
           <Route path="/fan-clubs/*" element={<FanClubsModule />} />
           <Route path="/players-safeguarding/*" element={<PlayersSafeguardingModule />} />
+          <Route path="/operations/*" element={<OperationsModule />} />
 
-          {/* Further module bundle routes appended here, one block per delivery:
-              <Route path="/operations/*" element={<OperationsModule />} />
-              ... */}
+          {/* All 8 module bundles (53 screens) are now registered. */}
         </Route>
       </Route>
     </Routes>
