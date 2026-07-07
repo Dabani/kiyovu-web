@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { LoginPage } from './pages/auth/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { AppLayout } from './components/layout/AppLayout';
-import { ProtectedRoute } from './routes/ProtectedRoute';
+import { ProtectedRoute, RequireRole } from './routes/ProtectedRoute';
+import { UsersPage } from './pages/admin/UsersPage';
 import { useAuthStore } from './stores/authStore';
 import { MembershipModule } from './modules/membership/MembershipModule';
 import { HrModule } from './modules/hr/HrModule';
@@ -36,8 +37,16 @@ export default function App() {
           <Route path="/fan-clubs/*" element={<FanClubsModule />} />
           <Route path="/players-safeguarding/*" element={<PlayersSafeguardingModule />} />
           <Route path="/operations/*" element={<OperationsModule />} />
+          <Route
+            path="/users"
+            element={
+              <RequireRole role="super_admin">
+                <UsersPage />
+              </RequireRole>
+            }
+          />
 
-          {/* All 8 module bundles (53 screens) are now registered. */}
+          {/* All 8 module bundles (53 screens) + platform User Management are now registered. */}
         </Route>
       </Route>
     </Routes>
