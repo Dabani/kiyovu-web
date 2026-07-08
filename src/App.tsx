@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { LoginPage } from './pages/auth/LoginPage';
+import { ForgotPasswordPage } from './pages/auth/ForgotPasswordPage';
+import { ResetPasswordPage } from './pages/auth/ResetPasswordPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { AppLayout } from './components/layout/AppLayout';
 import { ProtectedRoute, RequireRole } from './routes/ProtectedRoute';
@@ -25,6 +27,8 @@ export default function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
 
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>

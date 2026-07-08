@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Paper, TextInput, PasswordInput, Button, Checkbox, Stack, Image, Text, Alert } from '@mantine/core';
+import { Paper, TextInput, PasswordInput, Button, Checkbox, Stack, Image, Text, Alert, Group, Anchor } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { IconAlertCircle } from '@tabler/icons-react';
 import { useAuthStore } from '../../stores/authStore';
 
@@ -51,9 +51,12 @@ export function LoginPage() {
 
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <Stack>
-            <TextInput label={t('auth.email')} placeholder="you@kiyovusports.net" {...form.getInputProps('email')} />
+            <TextInput label={t('auth.email')} placeholder="you@kiyovusports.rw" {...form.getInputProps('email')} />
             <PasswordInput label={t('auth.password')} {...form.getInputProps('password')} />
-            <Checkbox label={t('auth.rememberMe')} {...form.getInputProps('remember', { type: 'checkbox' })} />
+            <Group justify="space-between">
+              <Checkbox label={t('auth.rememberMe')} {...form.getInputProps('remember', { type: 'checkbox' })} />
+              <Anchor component={Link} to="/forgot-password" size="sm">Forgot password?</Anchor>
+            </Group>
             <Button type="submit" color="kiyovuGreen" fullWidth loading={submitting}>
               {t('auth.loginButton')}
             </Button>

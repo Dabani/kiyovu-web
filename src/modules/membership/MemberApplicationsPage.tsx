@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { Modal, TextInput, Select, Textarea, Checkbox, Button, Group, Stack, Title, Badge } from '@mantine/core';
+import { Modal, TextInput, Select, Textarea, Checkbox, Button, Group, Stack, Title, Badge, ActionIcon, Tooltip } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
+import { IconUserPlus } from '@tabler/icons-react';
 import { DataTable, DataTableColumn } from '../../components/DataTable/DataTable';
 import { ReportPeriod } from '../../components/DataTable/ReportPeriodModal';
 import { useCrudList } from '../../hooks/useCrudList';
 import { useCrudMutations, downloadReport } from '../../hooks/useCrudMutations';
 import { useLookupSelect } from '../../hooks/useLookup';
+import { ProvisionAccountModal } from '../../components/ProvisionAccountModal';
 
 const ENDPOINT = '/members';
 
@@ -39,6 +41,7 @@ export function MemberApplicationsPage() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<Member | null>(null);
+  const [provisioningMember, setProvisioningMember] = useState<Member | null>(null);
 
   const form = useForm({
     initialValues: {
@@ -110,6 +113,16 @@ export function MemberApplicationsPage() {
       exportValue: (r) => r.status?.label_en ?? '',
     },
     { key: 'application_date', header: 'Application Date' },
+    {
+      key: 'provision', header: 'Login',
+      render: (r) => (
+        <Tooltip label="Create login account">
+          <ActionIcon variant="subtle" color="kiyovuGreen" onClick={() => setProvisioningMember(r)}>
+            <IconUserPlus size={16} />
+          </ActionIcon>
+        </Tooltip>
+      ),
+    },
   ];
 
   return (
@@ -168,6 +181,17 @@ export function MemberApplicationsPage() {
           </Stack>
         </form>
       </Modal>
+
+      {provisioningMember && (
+        <ProvisionAccountModal
+          opened={!!provisioningMember}
+          onClose={() => setProvisioningMember(null)}
+          sourceType="member"
+          sourceId={provisioningMember.id}
+          defaultEmail={provisioningMember.email}
+          suggestedRoles={['member']}
+        />
+      )}
     </>
   );
 }

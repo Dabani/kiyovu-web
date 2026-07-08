@@ -24,11 +24,16 @@ export const theme = createTheme({
     Table: {
       defaultProps: { striped: true, highlightOnHover: true, withTableBorder: true },
     },
+    Anchor: {
+      defaultProps: { c: 'kiyovuGreen.8', underline: 'hover' },
+    },
   },
   other: {
     // Referenced by status Badge color mapping — kept in sync with lu_statuses.color_hex
     // so a status added in the DB (no code deploy) still renders sensibly by default.
     brandGreen: '#006400',
     brandWhite: '#ffffff',
+    navbarBg: '#004d00',
+    navbarText: '#f0f7f0',
   },
 });

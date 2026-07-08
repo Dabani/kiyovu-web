@@ -1,0 +1,51 @@
+/*
+ * Applies after Mantine's core styles (imported second in main.tsx).
+ * Two things happen here:
+ *  1. Overriding --mantine-color-anchor covers every Mantine <Anchor> and
+ *     any component that reads that variable (e.g. NavLink external links).
+ *  2. The plain `a` rules cover native <a> tags, which do NOT consume that
+ *     Mantine variable — needed so nothing in the app defaults to browser blue.
+ */
+:root {
+  --mantine-color-anchor: #006400;
+}
+
+a {
+  color: #006400;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #004d00;
+  text-decoration: underline;
+}
+
+/* Distinguishable from unvisited links without resorting to browser-default blue/purple. */
+a:visited {
+  color: #3d7a3d;
+}
+
+a:visited:hover {
+  color: #004d00;
+}
+
+/* Sidebar navigation — brand green background, own link/hover rules so
+   nav items never pick up the global blue-avoidance greens above (which
+   would be too low-contrast on a dark green backdrop). */
+.kiyovu-navlink {
+  color: #f0f7f0 !important;
+}
+
+.kiyovu-navlink:hover {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+.kiyovu-navlink[data-active='true'] {
+  background-color: #ffffff !important;
+  color: #004d00 !important;
+  font-weight: 700;
+}
+
+.kiyovu-navlink[data-active='true']:hover {
+  background-color: #f2f2f2 !important;
+}

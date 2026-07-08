@@ -2,10 +2,12 @@ import { AppShell, Burger, Group, Image, NavLink, Menu, Avatar, Text, Select } f
 import { useDisclosure } from '@mantine/hooks';
 import { useTranslation } from 'react-i18next';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { IconLogout, IconUserCircle, IconChevronDown } from '@tabler/icons-react';
+import { IconLogout, IconUserCircle, IconChevronDown, IconLockPassword } from '@tabler/icons-react';
+import { useState } from 'react';
 import { useAuthStore } from '../../stores/authStore';
 import { visibleNavItems } from './navConfig';
 import { setLanguage } from '../../i18n';
+import { ChangePasswordModal } from './ChangePasswordModal';
 
 const LANGUAGES = [
   { value: 'en', label: 'English' },
@@ -15,6 +17,7 @@ const LANGUAGES = [
 
 export function AppLayout() {
   const [opened, { toggle }] = useDisclosure();
+  const [passwordModalOpen, setPasswordModalOpen] = useState(false);
   const { t, i18n } = useTranslation();
   const { user, logout } = useAuthStore();
   const location = useLocation();
@@ -54,7 +57,7 @@ export function AppLayout() {
               allowDeselect={false}
               aria-label="Language"
             />
-            <Menu shadow="md" width={200}>
+            <Menu shadow="md" width={220}>
               <Menu.Target>
                 <Group gap={6} style={{ cursor: 'pointer' }}>
                   <Avatar radius="xl" color="kiyovuGreen" size="sm">
@@ -68,6 +71,9 @@ export function AppLayout() {
                 <Menu.Item leftSection={<IconUserCircle size={16} />} component={Link} to="/profile">
                   {t('nav.myProfile')}
                 </Menu.Item>
+                <Menu.Item leftSection={<IconLockPassword size={16} />} onClick={() => setPasswordModalOpen(true)}>
+                  Change Password
+                </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item color="red" leftSection={<IconLogout size={16} />} onClick={handleLogout}>
                   {t('auth.logout')}
@@ -78,24 +84,30 @@ export function AppLayout() {
         </Group>
       </AppShell.Header>
 
-      <AppShell.Navbar p="xs">
-        {items.map((item) => (
-          <NavLink
-            key={item.path}
-            component={Link}
-            to={item.path}
-            label={t(item.labelKey)}
-            leftSection={<item.icon size={18} stroke={1.6} />}
-            active={location.pathname === item.path}
-            color="kiyovuGreen"
-            variant="filled"
-          />
-        ))}
+      <AppShell.Navbar p="xs" style={{ backgroundColor: 'var(--kiyovu-navbar-bg, #004d00)' }}>
+        {items.map((item) => {
+          const isActive = location.pathname === item.path;
+          return (
+            <NavLink
+              key={item.path}
+              component={Link}
+              to={item.path}
+              label={t(item.labelKey)}
+              leftSection={<item.icon size={18} stroke={1.6} />}
+              active={isActive}
+              className="kiyovu-navlink"
+              data-active={isActive}
+              variant="subtle"
+            />
+          );
+        })}
       </AppShell.Navbar>
 
       <AppShell.Main>
         <Outlet />
       </AppShell.Main>
+
+      <ChangePasswordModal opened={passwordModalOpen} onClose={() => setPasswordModalOpen(false)} />
     </AppShell>
   );
 }

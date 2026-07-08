@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { Modal, TextInput, Select, Textarea, Checkbox, Button, Group, Stack, Title, Badge, NumberInput } from '@mantine/core';
+import { Modal, TextInput, Select, Textarea, Checkbox, Button, Group, Stack, Title, Badge, NumberInput, ActionIcon, Tooltip } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useTranslation } from 'react-i18next';
+import { IconUserPlus } from '@tabler/icons-react';
 import { DataTable, DataTableColumn } from '../../components/DataTable/DataTable';
 import { ReportPeriod } from '../../components/DataTable/ReportPeriodModal';
 import { useCrudList } from '../../hooks/useCrudList';
 import { useCrudMutations, downloadReport } from '../../hooks/useCrudMutations';
 import { useLookupSelect } from '../../hooks/useLookup';
 import { useCandidateOptions } from '../../hooks/useCandidateOptions';
+import { ProvisionAccountModal } from '../../components/ProvisionAccountModal';
 
 const ENDPOINT = '/hr-employment-contracts';
 
@@ -39,6 +41,7 @@ export function HrEmploymentContractsPage() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<Contract | null>(null);
+  const [provisioningContract, setProvisioningContract] = useState<Contract | null>(null);
 
   const form = useForm({
     initialValues: {
@@ -110,6 +113,16 @@ export function HrEmploymentContractsPage() {
     { key: 'employmentType', header: 'Type', render: (r) => r.employmentType?.label_en ?? '—', exportValue: (r) => r.employmentType?.label_en ?? '' },
     { key: 'term_start', header: 'Term Start' },
     { key: 'status', header: 'Status', render: (r) => <Badge>{r.status?.label_en}</Badge>, exportValue: (r) => r.status?.label_en ?? '' },
+    {
+      key: 'provision', header: 'Login',
+      render: (r) => (
+        <Tooltip label="Create login account">
+          <ActionIcon variant="subtle" color="kiyovuGreen" onClick={() => setProvisioningContract(r)}>
+            <IconUserPlus size={16} />
+          </ActionIcon>
+        </Tooltip>
+      ),
+    },
   ];
 
   return (
@@ -178,6 +191,16 @@ export function HrEmploymentContractsPage() {
           </Stack>
         </form>
       </Modal>
+
+      {provisioningContract && (
+        <ProvisionAccountModal
+          opened={!!provisioningContract}
+          onClose={() => setProvisioningContract(null)}
+          sourceType="hr-employment-contract"
+          sourceId={provisioningContract.id}
+          suggestedRoles={[]}
+        />
+      )}
     </>
   );
 }
